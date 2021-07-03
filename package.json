@@ -6,8 +6,10 @@
     "author": "Rahi Khan <rahikhan360@gmail.com>",
     "license": "MIT",
     "scripts": {
-        "dev": "nodemon server/app.js",
-        "devClient": "npm start --prefix client"
+        "setup": "yarn && yarn --cwd ./client/",
+        "upgrade": "yarn upgrade && yarn --cwd ./client/ upgrade",
+        "server": "nodemon server/app.js",
+        "client": "yarn --cwd ./client/ start"
     },
     "devDependencies": {
         "dotenv": "^10.0.0",
