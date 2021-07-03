@@ -1,0 +1,19 @@
+{
+    "name": "news_feed_app",
+    "version": "1.0.0",
+    "main": "server/index.js",
+    "repository": "https://github.com/rahi-khan/news_feed_app.git",
+    "author": "Rahi Khan <rahikhan360@gmail.com>",
+    "license": "MIT",
+    "scripts": {
+        "dev": "nodemon server/index.js",
+        "devClient": "npm start --prefix client"
+    },
+    "devDependencies": {
+        "dotenv": "^10.0.0",
+        "nodemon": "^2.0.9"
+    },
+    "dependencies": {
+        "express": "^4.17.1"
+    }
+}

@@ -1,6 +1,6 @@
 
 /client/node_modules
-/sever/node_modules
+/node_modules
 /.pnp
 .pnp.js
 
