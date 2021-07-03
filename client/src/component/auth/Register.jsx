@@ -1,9 +1,9 @@
-import { LockClosedIcon } from "@heroicons/react/solid";
+import { Link } from "react-router-dom";
 
 const Register = () => {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-md w-full space-y-8">
+            <div className="max-w-lg w-full space-y-7 p-10 rounded-lg shadow-2xl">
                 <div>
                     <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
                         Let's begin the adventure!
@@ -26,11 +26,11 @@ const Register = () => {
                                 type="email"
                                 autoComplete="email"
                                 required
-                                className="appearance-none rounded-none relative block w-full px-3.5 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                className="appearance-none rounded-none relative block w-full px-3.5 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-base"
                                 placeholder="Email address"
                             />
                         </div>
-                        <div>
+                        {/* <div>
                             <label htmlFor="full-name" className="sr-only">
                                 Full Name
                             </label>
@@ -43,7 +43,7 @@ const Register = () => {
                                 className="appearance-none rounded-none relative block w-full px-3.5 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                 placeholder="Full Name"
                             />
-                        </div>
+                        </div> */}
                         <div>
                             <label htmlFor="username" className="sr-only">
                                 Username
@@ -54,7 +54,7 @@ const Register = () => {
                                 type="username"
                                 autoComplete="username"
                                 required
-                                className="appearance-none rounded-none relative block w-full px-3.5 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                className="appearance-none rounded-none relative block w-full px-3.5 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-base"
                                 placeholder="Username"
                             />
                         </div>
@@ -68,7 +68,7 @@ const Register = () => {
                                 type="password"
                                 autoComplete="current-password"
                                 required
-                                className="appearance-none rounded-none relative block w-full px-3.5 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                className="appearance-none rounded-none relative block w-full px-3.5 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-base"
                                 placeholder="Password"
                             />
                         </div>
@@ -82,7 +82,7 @@ const Register = () => {
                                 type="password2"
                                 autoComplete="current-password"
                                 required
-                                className="appearance-none rounded-none relative block w-full px-3.5 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                className="appearance-none rounded-none relative block w-full px-3.5 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-base"
                                 placeholder="Confirm Password"
                             />
                         </div>
@@ -117,12 +117,19 @@ const Register = () => {
                     <div>
                         <button
                             type="submit"
-                            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
-                            Sign in
+                            Sign up
                         </button>
                     </div>
                 </form>
+
+                <h4 className="mt-2 text-center text-lg font-medium text-gray-600">
+                    Have an account?{" "}
+                    <Link to="/login" className="text-indigo-600">
+                        Login
+                    </Link>
+                </h4>
             </div>
         </div>
     );
