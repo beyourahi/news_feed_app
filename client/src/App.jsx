@@ -10,13 +10,11 @@ if (localStorage.token) setAuthToken(localStorage.token);
 
 const App = () => (
     <Wrapper>
-        <div className="container">
-            <Switch>
-                <PrivateRoute exact path="/" component={Home} />
-                <Route exact path="/register" component={Register} />
-                <Route exact path="/login" component={Login} />
-            </Switch>
-        </div>
+        <Switch>
+            <PrivateRoute exact path="/" component={Home} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+        </Switch>
     </Wrapper>
 );
 
