@@ -95,7 +95,7 @@ const PostForm = () => {
                                                         <div className="space-y-1 text-center">
                                                             <div className="flex text-sm text-gray-600">
                                                                 <label
-                                                                    htmlFor="file-upload"
+                                                                    htmlFor="file"
                                                                     className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                                                                 >
                                                                     <span>
