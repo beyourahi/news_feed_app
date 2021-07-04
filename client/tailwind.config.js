@@ -5,7 +5,10 @@ module.exports = {
         extend: {},
     },
     variants: {
-        extend: {},
+        extend: {
+            scale: ["active"],
+            appearance: ["hover", "focus", "active"],
+        },
     },
     plugins: [require("@tailwindcss/forms")],
 };
