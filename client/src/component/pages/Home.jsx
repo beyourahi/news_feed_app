@@ -5,10 +5,10 @@ import PostForm from "../posts/PostForm";
 import Posts from "../posts/Posts";
 
 const Home = () => {
-    // const { loadUser } = useContext(AuthContext);
+    const { loadUser } = useContext(AuthContext);
 
-    // // eslint-disable-next-line react-hooks/exhaustive-deps
-    // useEffect(() => loadUser(), []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => loadUser(), []);
 
     return (
         <>

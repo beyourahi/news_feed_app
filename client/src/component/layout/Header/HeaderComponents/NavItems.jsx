@@ -7,7 +7,7 @@ import { PostContext } from "../../../../context/PostState";
 
 const NavItems = () => {
     const { isOpen, HMheight } = useContext(NavContext);
-    const { isAuthenticated, user } = useContext(AuthContext);
+    const { isAuthenticated, user, logout } = useContext(AuthContext);
     const { setOpen } = useContext(PostContext);
 
     return (
@@ -40,6 +40,7 @@ const NavItems = () => {
                             to="/login"
                             type="submit"
                             className="group relative flex justify-center items-center py-2 px-4 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-gray-50 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 duration-500 transition-all transform active:scale-90 active:outline-none appearance-none"
+                            onClick={() => logout}
                         >
                             <FiLogOut />
                             <span className="hide-sm ml-1">Log Out</span>
