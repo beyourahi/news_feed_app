@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
 const Brand = () => (
-    //! Render Brand Name
+    //! Brand Name
     <Link to="/" className={brandNameStyles}>
-        <h1>Edie</h1>
+        <h1>Fido</h1>
     </Link>
 );
 
