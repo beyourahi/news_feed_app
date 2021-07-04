@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-
 const auth = require("../middlewares/jwt_auth.js");
 const sql = require("../util/sql");
 
@@ -44,7 +43,7 @@ router.post(`/`, async (req, res) => {
     }
 
     //! Create & send a JWT
-    const payload = { user: { id: row[0].id ,name:row[0].name} };
+    const payload = { user: { id: row[0].id ,username:row[0].username} };
     jwt.sign(
       payload,
       process.env.jwtSecret,

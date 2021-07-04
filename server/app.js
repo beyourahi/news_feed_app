@@ -11,9 +11,9 @@ app.use(cors());
 app.use(express.json({ extended: false }));
 
 
-//! Define Routes
+//! <-- Define Routes -->
 
-//! post images
+//! post images and get images
 app.use("/api/post", require("./routes/post.js"));
 
 //! login  
@@ -22,8 +22,10 @@ app.use("/api/auth", require("./routes/auth.js"));
 //! register
 app.use("/api/users", require("./routes/users.js")); 
 
+//! send image 
+app.use('/img', express.static(path.join(__dirname,"upload")));
 
-//server  error handling
+
 app.use(require("./middlewares/err_500"))
 // invalid url
 app.use(require("./middlewares/err_404"))

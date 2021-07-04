@@ -2,16 +2,19 @@ const express = require("express");
 const router = express.Router();
 const auth = require("../middlewares/jwt_auth");
 const sql = require("../util/sql");
-const upload = require("../middlewares/upload")
-
-
+const upload = require("../middlewares/upload");
+const path = require("path");
 //? @route     GET /api/contacts
 //? @desc      Get all user contacts
 //? @access    Private
 router.get(`/`, auth, async (req, res) => {
   try {
-    //const contacts = await Contact.find({ user: req.user.id }).sort({ date: -1 });
-    res.json("const");
+    const query =
+      "SELECT posts.post_id,users.username,caption FROM users INNER JOIN posts ON users.id = posts.user_id";
+    const [rows] = await sql.execute(query);
+    console.log(rows);
+
+    res.json(rows);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -24,16 +27,23 @@ router.get(`/`, auth, async (req, res) => {
 router.post(`/`, auth, upload, async (req, res) => {
   //! Destructuring incoming data
   const { caption } = req.body;
- const user = req.user;
-    
+  const { user, imgName } = req;
+  console.log(user, imgName,caption);
   try {
     //! Create new post
+    const postArr = [user.id, caption, imgName];
+    //! Save post to DB
+    const [rows] = await sql.execute(
+      "INSERT INTO `posts`(`user_id`,`caption`,`post_id`) VALUES(?,?,?)",
+      postArr
+    );
 
-    //! Save contact to DB
-    //  const newContact = await contact.save();
+    if (rows.affectedRows !== 1) {
+      return res.status(400).json({ msg: "Your post submission has failed." });
+    }
 
-    //! Return contact as json
-    res.json("testing");
+    //! return success message
+    res.json({ msg: "Your post was submitted." });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -41,27 +51,17 @@ router.post(`/`, auth, upload, async (req, res) => {
 });
 
 //? @route     PUT /api/post
-//? @desc      Update a psot like
+//? @desc      Update a post like
 //? @access    Private
 router.put(`/:postId`, auth, async (req, res) => {
-  const user = req.user
-  
+  const user = req.user;
+
   //! new object for updated contact
-  
+
   try {
     //! Check to see if user has alreqady liked the post
 
-    // let contact = await Contact.findById(req.params.id);
-    // if (!contact) {
-    //   return res.status(404).json({ msg: "Contact not found" });
-    // }
-
     // //! Update post
-    // contact = await Contact.findByIdAndUpdate(
-    //   req.params.id,
-    //   { $set: contactFields },
-    //   { new: true }
-    // );
 
     //! Return contact as json
     res.json("post");
@@ -74,23 +74,24 @@ router.put(`/:postId`, auth, async (req, res) => {
 //? @route     DELETE /api/post
 //? @desc      Delete a contact
 //? @access    Private
-router.delete(`/:id`, auth, async (req, res) => {
+router.delete(`/:post_id`, auth, async (req, res) => {
   try {
-    //! Check to see if contact exists
-    let contact = await Contact.findById(req.params.id);
-    if (!contact) {
-      return res.status(404).json({ msg: "Contact not found" });
+    //! Check to see if post already exists
+
+    const [row] = await sql.execute("SELECT * FROM `posts` WHERE `post_id`=?", [
+      req.params.post_id,
+    ]);
+
+    if (row.length >= 1) {
+      //! Delete contact
+      const [row] = await sql.execute("DELETE FROM `posts` WHERE `post_id`=?", [
+        req.params.post_id,
+      ]);
+      console.log("post found and deleted");
+      return res.json({ msg: "post deleted" });
+    } else {
+      return res.status(400).json({ msg: "post now found" });
     }
-
-    //! Check if contact is owned by the user
-    if (contact.user.toString() !== req.user.id) {
-      return res.status(401).json({ msg: "Not Authorized" });
-    }
-
-    //! Delete contact
-    await Contact.findByIdAndRemove(req.params.id);
-
-    res.json({ msg: "Contact Deleted" });
   } catch (error) {
     console.error(err.message);
     res.status(500).send("Server Error");
