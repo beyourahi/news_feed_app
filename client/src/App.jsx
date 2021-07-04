@@ -2,7 +2,6 @@ import { Switch, Route } from "react-router-dom";
 import Wrapper from "./Wrapper";
 import Login from "./component/auth/Login";
 import Register from "./component/auth/Register";
-import PrivateRoute from "./component/routing/PrivateRoute";
 import Home from "./component/pages/Home";
 import setAuthToken from "./utils/setAuthToken";
 
