@@ -32,7 +32,7 @@ router.post(`/`, async (req, res) => {
 
     //! Create new user with unique username like discord with 4 random digits
     
-    
+
     const userArr = [unique_userName, email, hashedPassword];
 
     //! Save user to DB

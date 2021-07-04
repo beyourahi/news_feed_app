@@ -1,7 +1,8 @@
 const { nanoid } = require("nanoid");
 const multer = require("multer");
 const path = require("path");
-const image_folder = "../upload/";
+const image_folder = "upload/";
+
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -10,11 +11,12 @@ const storage = multer.diskStorage({
   filename: (req, file, cb) => {
     const fileExt = path.extname(file.originalname);
     const fileName = nanoid();
-    console.log(fileName)
+    console.log(fileName+fileExt)
     req.imgName = fileName+fileExt;
     cb(null, fileName + fileExt);
   },
 });
+
 
 // let upload = multer({
 //   dest: storage,
