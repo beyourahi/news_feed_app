@@ -9,7 +9,7 @@ const Home = () => {
     // useEffect(() => loadUser(), []);
 
     return (
-        <div>
+        <div className="pt-8">
             <PostForm />
         </div>
     );
