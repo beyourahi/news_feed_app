@@ -8,7 +8,7 @@ const Register = props => {
     useEffect(() => {
         if (isAuthenticated) props.history.push("/");
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [isAuthenticated, props.history]);
 
     const [user, setUser] = useState({
         username: "",

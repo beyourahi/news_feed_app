@@ -4,8 +4,10 @@
     "scripts": {
         "setup": "yarn && yarn --cwd ./client/",
         "upgrade": "yarn upgrade && yarn --cwd ./client/ upgrade",
+        "start": "node server/app.js",
         "server": "nodemon server/app.js",
-        "client": "yarn --cwd ./client/ start"
+        "client": "yarn --cwd ./client/ start",
+        "dev": "concurrently \"yarn run server\" \"yarn run client\""
     },
     "dependencies": {
         "bcryptjs": "^2.4.3",
@@ -18,6 +20,8 @@
         "sharp": "^0.28.3"
     },
     "devDependencies": {
-        "dotenv": "^10.0.0"
+        "concurrently": "^6.2.0",
+        "dotenv": "^10.0.0",
+        "nodemon": "^2.0.9"
     }
 }
