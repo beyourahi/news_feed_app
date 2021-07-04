@@ -32,8 +32,8 @@ const NavState = ({ children }) => {
             const shrinkOn = 200;
 
             if (distanceY > shrinkOn) {
-                setHeight("h-12");
-                setHMHeight("top-12");
+                setHeight("h-16");
+                setHMHeight("top-16");
             } else {
                 setHeight("h-20");
                 setHMHeight("top-20");
