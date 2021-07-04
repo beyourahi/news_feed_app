@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import { FiLogOut } from "react-icons/fi";
 import { AuthContext } from "../../../../context/AuthState";
 import { NavContext } from "../../../../context/NavState";
+import { PostContext } from "../../../../context/PostState";
 
 const NavItems = () => {
     const { isOpen, HMheight } = useContext(NavContext);
     const { isAuthenticated, user } = useContext(AuthContext);
+    const { setOpen } = useContext(PostContext);
 
     return (
         //! Render Nav Lists
@@ -18,15 +20,16 @@ const NavItems = () => {
             }
         >
             {isAuthenticated ? (
-                <div className="flex justify-between items-center w-96 bg-red-500">
+                <div className="flex justify-between items-center w-96">
                     {/*///// GREETINGS */}
                     <h4>Hey, {user && user.username}</h4>
 
-                    <div className="flex justify-between w-7/12 bg-pink-500">
+                    <div className="flex justify-between w-7/12">
                         {/*///// CREATE POST */}
                         <Link
                             to="/register"
                             type="submit"
+                            onClick={() => setOpen(true)}
                             className="group relative flex justify-center py-2 px-7 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 duration-500 transition-all transform active:scale-90 active:outline-none appearance-none"
                         >
                             Post
