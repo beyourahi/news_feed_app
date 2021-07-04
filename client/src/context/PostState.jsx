@@ -1,6 +1,4 @@
 import axios from "axios";
-import img_one from "./img_one.jpg";
-import img_two from "./img_two.jpg";
 import { createContext, useReducer, useState } from "react";
 import { GET_POSTS, ADD_POST, POST_ERROR } from "./types.js";
 
@@ -39,20 +37,7 @@ const reducer = (state, action) => {
 
 const PostState = ({ children }) => {
     const initialState = {
-        posts: [
-            {
-                username: "rahikhan",
-                caption:
-                    "No matter how powerful your enemy is, if you believe in your own strength, you can fight and win any battle",
-                image: img_one,
-            },
-            {
-                username: "mahid",
-                caption:
-                    "When God has forbidden something You are no one to normalise that Stop normalising normalising",
-                image: img_two,
-            },
-        ],
+        posts: null,
         caption: "",
         image: null,
         error: null,
