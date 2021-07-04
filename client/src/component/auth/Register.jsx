@@ -22,9 +22,9 @@ const Register = props => {
 
     const onSubmit = e => {
         e.preventDefault();
-        // if (password !== password2) {
-        //     return setAlert("Passwords do not match", "danger");
-        // }
+        if (password !== password2) {
+            return alert("Passwords do not match");
+        }
         register({ username, email, password });
     };
 
@@ -101,6 +101,7 @@ const Register = props => {
                                 onChange={onChange}
                                 autoComplete="current-password"
                                 required
+                                minLength="6"
                                 className="appearance-none rounded-none relative block w-full px-3.5 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-base"
                                 placeholder="Password"
                             />
@@ -112,11 +113,12 @@ const Register = props => {
                             <input
                                 id="password2"
                                 name="password2"
-                                type="password2"
+                                type="password"
                                 value={password2}
                                 onChange={onChange}
                                 autoComplete="current-password"
                                 required
+                                minLength="6"
                                 className="appearance-none rounded-none relative block w-full px-3.5 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-base"
                                 placeholder="Confirm Password"
                             />
