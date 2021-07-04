@@ -73,7 +73,7 @@ const reducer = (state, action) => {
 const AuthState = ({ children }) => {
     const initialState = {
         token: localStorage.getItem("token"),
-        isAuthenticated: null,
+        isAuthenticated: true,
         loading: true,
         error: null,
         user: null,

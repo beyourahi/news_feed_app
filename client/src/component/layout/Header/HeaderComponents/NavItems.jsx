@@ -18,16 +18,16 @@ const NavItems = () => {
             }
         >
             {isAuthenticated ? (
-                <div className="flex justify-between items-center w-96">
+                <div className="flex justify-between items-center w-96 bg-red-500">
                     {/*///// GREETINGS */}
                     <h4>Hey, {user && user.username}</h4>
 
-                    <div className="flex justify-between w-3/5">
+                    <div className="flex justify-between w-7/12 bg-pink-500">
                         {/*///// CREATE POST */}
                         <Link
                             to="/register"
                             type="submit"
-                            className="group relative flex justify-center w-28 py-2.5 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 duration-500 transition-all transform active:scale-90 active:outline-none appearance-none"
+                            className="group relative flex justify-center py-2 px-7 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 duration-500 transition-all transform active:scale-90 active:outline-none appearance-none"
                         >
                             Post
                         </Link>
@@ -36,10 +36,10 @@ const NavItems = () => {
                         <Link
                             to="/login"
                             type="submit"
-                            className="group relative flex justify-center items-center w-28 py-2.5 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-gray-50 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 duration-500 transition-all transform active:scale-90 active:outline-none appearance-none"
+                            className="group relative flex justify-center items-center py-2 px-4 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-gray-50 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 duration-500 transition-all transform active:scale-90 active:outline-none appearance-none"
                         >
                             <FiLogOut />
-                            <span className="hide-sm ml-2">Log Out</span>
+                            <span className="hide-sm ml-1">Log Out</span>
                         </Link>
                     </div>
                 </div>
