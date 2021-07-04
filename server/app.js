@@ -26,6 +26,7 @@ app.use("/api/users", require("./routes/users.js"));
 app.use('/img', express.static(path.join(__dirname,"upload")));
 
 
+
 app.use(require("./middlewares/err_500"))
 // invalid url
 app.use(require("./middlewares/err_404"))

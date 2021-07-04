@@ -1,7 +1,7 @@
 const { nanoid } = require("nanoid");
 const multer = require("multer");
 const path = require("path");
-const image_folder = "../upload";
+const image_folder = "../upload/";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -16,23 +16,24 @@ const storage = multer.diskStorage({
   },
 });
 
-let upload = multer({
-  dest: storage,
-  limits: {
-    fileSize: 8000000,
-  },
-  fileFilter: (req, file, cb) => {
-    if (
-      file.mimetype == "image/png" ||
-      file.mimetype == "image/jpg" ||
-      file.mimetype == "image/jpeg" ||
-      file.mimetype == "image/webp"
-    ) {
-      cb(null, true);
-    } else {
-      cb(new Error("supported files are .png .jpg .jpeg or .webp"));
-    }
-  },
-});
+// let upload = multer({
+//   dest: storage,
+//   limits: {
+//     fileSize: 8000000,
+//   },
+//   fileFilter: (req, file, cb) => {
+//     if (
+//       file.mimetype == "image/png" ||
+//       file.mimetype == "image/jpg" ||
+//       file.mimetype == "image/jpeg" ||
+//       file.mimetype == "image/webp"
+//     ) {
+//       cb(null, true);
+//     } else {
+//       cb(new Error("supported files are .png .jpg .jpeg or .webp"));
+//     }
+//   },
+// });
+var upload = multer({ storage: storage })
 
 module.exports = upload.single("post");
