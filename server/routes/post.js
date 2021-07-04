@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const auth = require("../middlewares/jwt_auth");
 const sql = require("../util/sql");
-const upload = require("../util/upload")
+const upload = require("../middlewares/upload")
 
 
 //? @route     GET /api/contacts
@@ -21,7 +21,7 @@ router.get(`/`, auth, async (req, res) => {
 //? @route     POST /api/contacts
 //? @desc      Create a contact
 //? @access    Private
-router.post(`/`, auth, async (req, res) => {
+router.post(`/`, auth, upload, async (req, res) => {
   //! Destructuring incoming data
   const { caption } = req.body;
  const user = req.user;
@@ -40,48 +40,38 @@ router.post(`/`, auth, async (req, res) => {
   }
 });
 
-//? @route     PUT /api/contacts
-//? @desc      Update a contact
+//? @route     PUT /api/post
+//? @desc      Update a psot like
 //? @access    Private
-router.put(`/:id`, auth, async (req, res) => {
-  //! Destructuring incoming data
-  const { name, email, phone, type } = req.body;
-
+router.put(`/:postId`, auth, async (req, res) => {
+  const user = req.user
+  
   //! new object for updated contact
-  const contactFields = {};
-  if (name) contactFields.name = name;
-  if (email) contactFields.email = email;
-  if (phone) contactFields.phone = phone;
-  if (type) contactFields.type = type;
-
+  
   try {
-    //! Check to see if contact exists
-    let contact = await Contact.findById(req.params.id);
-    if (!contact) {
-      return res.status(404).json({ msg: "Contact not found" });
-    }
+    //! Check to see if user has alreqady liked the post
 
-    //! Check if contact is owned by the user
-    if (contact.user.toString() !== req.user.id) {
-      return res.status(401).json({ msg: "Not Authorized" });
-    }
+    // let contact = await Contact.findById(req.params.id);
+    // if (!contact) {
+    //   return res.status(404).json({ msg: "Contact not found" });
+    // }
 
-    //! Update contact
-    contact = await Contact.findByIdAndUpdate(
-      req.params.id,
-      { $set: contactFields },
-      { new: true }
-    );
+    // //! Update post
+    // contact = await Contact.findByIdAndUpdate(
+    //   req.params.id,
+    //   { $set: contactFields },
+    //   { new: true }
+    // );
 
     //! Return contact as json
-    res.json(contact);
+    res.json("post");
   } catch (error) {
     console.error(err.message);
     res.status(500).send("Server Error");
   }
 });
 
-//? @route     DELETE /api/contacts
+//? @route     DELETE /api/post
 //? @desc      Delete a contact
 //? @access    Private
 router.delete(`/:id`, auth, async (req, res) => {

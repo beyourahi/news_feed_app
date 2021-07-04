@@ -10,7 +10,7 @@ const sql = require("../util/sql");
 //? @access    Public
 router.post(`/`, async (req, res) => {
   //! Destructuring incoming data
-  const { name, username, email, password  } = req.body;
+  const {username, email, password  } = req.body;
     
   try {
     //! Check to see if user already exists
@@ -29,11 +29,11 @@ router.post(`/`, async (req, res) => {
     //! Create new user with unique username like discord with 4 random digits
     
     const unique_userName = `${username}#${Math.floor(1000 + Math.random() * 9000)}`;
-    const userArr = [name ,unique_userName, email, hashedPassword];
+    const userArr = [unique_userName, email, hashedPassword];
 
     //! Save user to DB
     const [rows] = await sql.execute(
-      "INSERT INTO `users`(`name`,`username`,`email`,`password`) VALUES(?,?,?,?)",
+      "INSERT INTO `users`(`username`,`email`,`password`) VALUES(?,?,?)",
       userArr
     );
       
