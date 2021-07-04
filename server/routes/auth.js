@@ -27,7 +27,8 @@ router.get(`/`, auth, async (req, res) => {
 router.post(`/`, async (req, res) => {
   //! Destructuring incoming data
   const { email, password } = req.body;
-
+  console.error(email, password)
+  
   try {
     //! Check Email
     const [row] = await sql.execute("SELECT * FROM `users` WHERE `email`=?", [

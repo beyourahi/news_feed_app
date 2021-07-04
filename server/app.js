@@ -6,14 +6,13 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 //! Connect to Database
-require("./db.js");
 
 //! Init Middleware
 app.use(cors());
 app.use(express.json({ extended: false }));
 
 //! Define Routes
-app.use(`/api/contacts`, require(`./routes/contacts.js`));
+app.use(`/api/post`, require(`./routes/post.js`));
 app.use(`/api/auth`, require(`./routes/auth.js`));
 app.use(`/api/users`, require(`./routes/users.js`));
 
