@@ -1,3 +1,4 @@
 module.exports = (req,res,next) => {
-    next("page does not exist!");
+    next(req.url+" | page does not exist!");
+    console.log()
 }

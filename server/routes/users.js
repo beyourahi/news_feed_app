@@ -10,16 +10,20 @@ const sql = require("../util/sql");
 //? @access    Public
 router.post(`/`, async (req, res) => {
   //! Destructuring incoming data
-  const {username, email, password  } = req.body;
-    
+  const  { username, email, password } = req.body;
+  const unique_userName = `${username}#${Math.floor(1000 + Math.random() * 9000)}`;
+  
+  
   try {
     //! Check to see if user already exists
     const [row] = await sql.execute("SELECT * FROM `users` WHERE `email`=?", [
       email,
     ]);
-
+     
     if (row.length >= 1) {
+      console.log("user already esists")
       return res.status(400).json({ msg: "User already exists" });
+      
     }
 
     //! Hash password
@@ -28,7 +32,7 @@ router.post(`/`, async (req, res) => {
 
     //! Create new user with unique username like discord with 4 random digits
     
-    const unique_userName = `${username}#${Math.floor(1000 + Math.random() * 9000)}`;
+    
     const userArr = [unique_userName, email, hashedPassword];
 
     //! Save user to DB
@@ -42,7 +46,7 @@ router.post(`/`, async (req, res) => {
     }
 
     //! Create & send a JWT
-    const payload = { user: { id: rows.insertId , name:name } };
+    const payload = { user: { id: rows.insertId , username:unique_userName } };
     jwt.sign(
       payload,
       process.env.jwtSecret,

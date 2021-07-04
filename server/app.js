@@ -13,13 +13,13 @@ app.use(express.json({ extended: false }));
 
 //! Define Routes
 
-// post images
+//! post images
 app.use("/api/post", require("./routes/post.js"));
 
-// login  
+//! login  
 app.use("/api/auth", require("./routes/auth.js"));
 
-// register
+//! register
 app.use("/api/users", require("./routes/users.js")); 
 
 
