@@ -12,7 +12,7 @@ router.post(`/`, async (req, res) => {
   //! Destructuring incoming data
   const  { username, email, password } = req.body;
   const unique_userName = `${username}#${Math.floor(1000 + Math.random() * 9000)}`;
-  
+  console.log(req.body)
   
   try {
     //! Check to see if user already exists
@@ -32,6 +32,8 @@ router.post(`/`, async (req, res) => {
 
     //! Create new user with unique username like discord with 4 random digits
     
+    
+
 
     const userArr = [unique_userName, email, hashedPassword];
 
